@@ -118,6 +118,51 @@ async function query(sql, params = []) {
   return rows;
 }
 
+// Automatic Table Creation on Startup
+const SCHEMA_SQL = `
+CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL, last_login DATE DEFAULT NULL);
+CREATE TABLE IF NOT EXISTS user_profiles (user_id INT NOT NULL PRIMARY KEY, full_name VARCHAR(255), age INT, birthdate DATE, gender VARCHAR(20), institution_name VARCHAR(255), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS user_bookmarks (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, title VARCHAR(255) NOT NULL, url TEXT NOT NULL, notes TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS user_budgets (user_id INT NOT NULL PRIMARY KEY, weekly_budget DECIMAL(10,2) DEFAULT 0.00, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS user_expenses (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, amount DECIMAL(10,2) NOT NULL, category VARCHAR(100), payment_method VARCHAR(50), expense_date DATE NOT NULL, notes TEXT, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS journal_entries (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, entry_date VARCHAR(50) NOT NULL, entry_text TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS reminders (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, text VARCHAR(255), completed TINYINT(1) DEFAULT 0, week_number INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS timetable (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, day_index INT, period_index INT, subject VARCHAR(100), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS user_exams (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, subject VARCHAR(255) NOT NULL, exam_date VARCHAR(20) NOT NULL, start_time VARCHAR(10) DEFAULT '00:00', end_time VARCHAR(10) DEFAULT '00:00', location VARCHAR(255), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS exam_names (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, exam_name VARCHAR(255), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS exam_marks (id INT AUTO_INCREMENT PRIMARY KEY, exam_id INT, subject_name VARCHAR(255), obtained_marks DECIMAL(5,2), total_marks DECIMAL(5,2), FOREIGN KEY (exam_id) REFERENCES exam_names(id));
+CREATE TABLE IF NOT EXISTS study_subjects (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, name VARCHAR(255) NOT NULL, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS study_units (id INT AUTO_INCREMENT PRIMARY KEY, subject_id INT, unit_text VARCHAR(255) NOT NULL, notes TINYINT(1) DEFAULT 0, learn TINYINT(1) DEFAULT 0, FOREIGN KEY (subject_id) REFERENCES study_subjects(id));
+CREATE TABLE IF NOT EXISTS user_calendar (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, event_date VARCHAR(20) NOT NULL, event_text VARCHAR(255) NOT NULL, event_color VARCHAR(20), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS user_countdowns (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, title VARCHAR(255) NOT NULL, target_date DATETIME NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE IF NOT EXISTS yearly_activity (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, day_of_year INT, year INT, FOREIGN KEY (user_id) REFERENCES users(id));
+`;
+
+async function initializeDatabase() {
+  try {
+    // Enable multiple statements for the initialization
+    const connection = await pool.promise().getConnection();
+    await connection.query("SET SESSION sql_mode = '';"); // Optional safety
+    
+    // We run queries one by one or via multipleStatements (configured in pool)
+    // To be safe and avoid pool reconfiguration, we'll split and run.
+    const queries = SCHEMA_SQL.split(';').map(q => q.trim()).filter(Boolean);
+    for (const q of queries) {
+      await connection.query(q);
+    }
+    
+    connection.release();
+    // eslint-disable-next-line no-console
+    console.log("Database schema verified/initialized successfully.");
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Database initialization failed:", err.message);
+  }
+}
+
+// Call initialization
+initializeDatabase();
+
 function authRequired(req, res, next) {
   const header = req.headers.authorization || "";
   const match = header.match(/^Bearer\s+(.+)$/i);
