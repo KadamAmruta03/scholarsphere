@@ -1,0 +1,214 @@
+
+.ff-card {
+  background-color: palegoldenrod;
+  background: rgba(28, 32, 25, 0.5);  /* semi-transparent background */
+  backdrop-filter: blur(10px);        /* blur effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 20px;
+  width: 560px;
+  gap: 30px;
+  height: 360px;
+
+  margin-left: -5px;
+  font-family: garamond;
+  
+}
+
+@media (max-width: 768px) {
+  .ff-card {
+    width: 100%;
+    max-width: 545px;
+    height: auto;
+    min-height: 350px;
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .ff-main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .ff-timer-wrapper {
+    margin: 0 auto;
+  }
+
+  .ff-time {
+    font-size: 3.2rem;
+  }
+}
+
+/* Fix for the shaking/jumping layout */
+.ff-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  height: 5px; /* Fixed height prevents jumping */
+}
+
+.ff-logo {
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  min-width: 150px; /* Ensures the logo area doesn't resize */
+}
+
+.ff-time {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 800;
+  /* Tabular nums ensure numbers don't move side-to-side */
+  font-variant-numeric: tabular-nums;
+  font-family: garamond;
+}
+
+.ff-content {
+  /* Ensure the text area has a fixed width to prevent shaking */
+  min-width: 200px;
+}
+
+.ff-mode {
+  border: 1px solid #050f1d;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* MAIN */
+.ff-main {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1;
+}
+
+.ff-timer-wrapper {
+  position: relative;
+  width: 220px;
+  height: 210px;
+}
+
+
+
+/* TEXT */
+.ff-content h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.ff-content p {
+  margin: 8px 0 22px;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* ACTIONS */
+.ff-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ff-start {
+  background: palegoldenrod;
+  color: #000;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ff-reset {
+  background: #050f1d;
+  border: none;
+  color: palegoldenrod;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.ff-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #050f1d;
+}
+
+.ff-footer label {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
+
+.ff-footer select {
+  width: 100%;
+  background: #050f1d;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  color: palegoldenrod;
+  outline: none;
+}
+
+/* PROGRESS */
+.ff-progress {
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* The background circle (the track) */
+.ff-timer-wrapper svg circle:first-child {
+  stroke: #050f1d; /* Dark navy background track */
+  stroke-width: 15px; /* Thickness of the line */
+  fill: transparent;
+}
+
+/* The actual moving progress line */
+.ff-progress {
+  stroke: palegoldenrod; /* The color of the active progress */
+  stroke-width: 15px;
+  stroke-linecap: round; /* Makes the ends of the line rounded */
+  fill: transparent;
+  transition: stroke-dashoffset 1s linear;
+}
+
+
+/* Styling for the manual number inputs */
+.option-box input[type="number"] {
+  width: 90%;
+  background: #050f1d; /* Matches your navy background */
+  border: 1px solid rgba(238, 232, 170, 0.2); /* Faint palegoldenrod border */
+  border-radius: 8px;
+  padding: 10px;
+  color: palegoldenrod;
+  font-family: 'Garamond', serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.option-box input[type="number"]:focus {
+  border: 1px solid palegoldenrod; /* Brightens on click */
+}
+
+/* Hide the up/down arrows (spinners) in Chrome, Safari, Edge, and Firefox */
+.option-box input::-webkit-outer-spin-button,
+.option-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

@@ -1,0 +1,307 @@
+.journal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  background: url("./Images/SHAimage4.jpg") center center no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  font-family: garamond;
+}
+
+/* Foreground layer */
+.journal-foreground {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 120px 90px;
+  font-family: garamond;
+}
+
+/* LEFT SIDE */
+.journal-calendar {
+  width: 30%;
+  height: 80vh;
+  background: #cddcf3;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: -40px;
+  margin-left: -25px;
+  margin-top: -8px;
+  font-family: garamond;
+}
+
+.custom-calendar {
+  width: 75%;
+  border: none;
+  background-color: transparent;
+  color: #060e1a;
+  transform: scale(1);
+  font-family: garamond;
+}
+
+.react-calendar {
+  width: 75% !important;
+  max-width: none !important;
+  height: 30% !important;
+  font-family: garamond;
+}
+
+.react-calendar__tile {
+  padding: 5px 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+  font-family: garamond;
+}
+
+.react-calendar__tile--active {
+  background-color: #ffd700 !important;
+  color: palegoldenrod !important;
+}
+
+/* RIGHT SIDE */
+.journal-editor {
+  width: 75%;
+  padding: 10px;
+  position: relative;
+  color: #fff;
+  z-index: 2;
+  font-family: garamond;
+}
+
+.journal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+/* Save Icon */
+.action-icon {
+  font-size: 1.8rem;
+  width: 30px;
+  height: 30px;
+  color: palegoldenrod;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.action-icon:hover {
+  transform: scale(1.25);
+  color: #ffd700;
+}
+
+/* No blue outline */
+.action-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* CLICKED (turns gold) */
+.active-icon {
+  color: #ffd700 !important;
+}
+
+.journal-heading {
+  color: palegoldenrod;
+  margin: 0;
+  text-shadow: 1px 1px 3px #000;
+  font-family: garamond;
+}
+
+
+
+/* Textarea */
+.journal-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: garamond;
+  
+
+}
+
+.journal-textarea {
+  width: 100%;
+  height: 350px;
+  padding: 15px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px #000;
+  font-family: garamond;
+}
+
+.journal-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 769px) {
+  /* Desktop sizing */
+  .react-calendar__month-view__days__day,
+  .react-calendar__tile {
+    width: 40px !important;
+    height: 80px !important;
+    padding: 2px !important;
+    font-size: 0.65rem !important;
+  }
+}
+
+/* Custom styling for React Toastify at the bottom */
+.Toastify__toast--dark {
+  background-color: #050f1d !important;
+  color: palegoldenrod !important;
+  border: 1px solid rgba(238, 232, 170, 0.3) !important;
+  border-radius: 12px !important;
+  font-family: garamond !important;
+  margin-bottom: 20px; /* Space from the bottom edge */
+}
+
+/* Ensure the container is above all other layers */
+.Toastify__toast-container--bottom-right {
+  z-index: 99999 !important;
+  bottom: 20px !important;
+  right: 20px !important;
+}
+
+/* The progress bar color */
+.Toastify__progress-bar--success {
+  background: palegoldenrod !important;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .journal-container {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: visible;
+    background: none;
+    background-attachment: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .journal-container::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("./Images/SHAimage4.jpg") center center no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .journal-foreground {
+    position: relative;
+    inset: auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 12px 10px;
+    gap: 14px;
+  }
+
+  .journal-calendar {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .custom-calendar {
+    width: 100%;
+  }
+
+  .react-calendar {
+    width: 100% !important;
+    height: auto !important;
+    padding: 8px 6px;
+  }
+
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .react-calendar__month-view__days__day,
+  .react-calendar__tile {
+    width: 100% !important;
+    height: clamp(28px, 8.5vw, 36px) !important;
+    aspect-ratio: auto;
+    min-height: 0;
+    padding: 0 !important;
+    font-size: clamp(0.62rem, 2.6vw, 0.8rem) !important;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    font-size: 0.72rem;
+  }
+
+  .react-calendar__navigation button {
+    font-size: 0.85rem;
+    padding: 6px 4px;
+  }
+
+  .journal-editor {
+    width: 100%;
+    padding: 12px 4px;
+  }
+
+  .journal-topbar {
+    gap: 10px;
+  }
+
+  .action-icon {
+    font-size: 1.15rem;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+  }
+
+  .journal-heading {
+    font-size: 1.02rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .journal-textarea {
+    height: 45vh;
+    min-height: 280px;
+    font-size: 1rem;
+  }
+
+  .Toastify__toast-container--bottom-right {
+    right: 12px !important;
+    bottom: 90px !important; /* above mobile bottom navbar */
+  }
+}

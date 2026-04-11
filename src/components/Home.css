@@ -1,0 +1,156 @@
+/* Container to hold everything */
+.home-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* THE BACKGROUND: Set unique image here */
+.page-background-fixed {
+  position: fixed;
+  inset: 0;
+  background: url("./Images/books.jpg") center center no-repeat;
+  background-size: cover;
+  z-index: -1; /* Keeps it behind your content */
+}
+
+/* CONTENT ALIGNMENT */
+.home-container {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+  margin-left: -65px; /* Space for sidebar if exists */
+  margin-top: -5px;
+  box-sizing: border-box;
+  
+}
+
+/* Desktop: widen Home content area without affecting sidebar icon positions */
+@media (min-width: 1025px) {
+  .home-container {
+    width: calc(100% + 40px);
+    margin-right: -40px;
+  }
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 26px; /* Space between rows */
+
+
+}
+
+/* ROW LOGIC */
+.row-full {
+  width: 100%;
+  margin-top: -10px;
+}
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* COLUMN SIZING */
+.col-main {
+  flex: 2; /* Takes more space (e.g., for Timetable) */
+
+}
+
+.col-side {
+  flex: 1; /* Takes less space (e.g., for Pomodoro) */
+
+}
+
+/* STACKING UPCOMING + COUNTDOWN */
+.stack-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+/* RESPONSIVE: Stack everything on mobile */
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  .row-flex {
+    flex-direction: column;
+  }
+  .home-container {
+    padding-left: 20px;
+  }
+
+  /* Home cards: full-width on stacked (mobile/tablet) layout */
+  .home-page-wrapper .row-full,
+  .home-page-wrapper .row-flex,
+  .home-page-wrapper .col-main,
+  .home-page-wrapper .col-side,
+  .home-page-wrapper .stack-vertical {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .home-page-wrapper .year-activity-container,
+  .home-page-wrapper .timetable-container,
+  .home-page-wrapper .ff-card,
+  .home-page-wrapper .weekly-strength-map,
+  .home-page-wrapper .upcoming-container,
+  .home-page-wrapper .countdown-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    box-sizing: border-box;
+  }
+}
+
+
+
+.birthday-toast-custom {
+  width: 600px !important;
+  min-height: 50px !important;
+  font-size: 15px !important; /* Large text */
+  text-align: center !important; /* Centers the text */
+  justify-content: center !important; /* Centers the content vertically */
+  display: flex !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+  border: none !important;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .page-background-fixed {
+    /* Match other pages on mobile (stretched full-screen background) */
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .home-page-wrapper {
+    overflow-x: hidden; /* prevent page-level horizontal scroll on Home */
+  }
+
+  .home-container {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 14px 12px;
+    overflow-x: hidden;
+  }
+
+  /* Avoid Home-only negative margins pushing content under the fixed header */
+  .row-full {
+    margin-top: 0;
+  }
+
+  .birthday-toast-custom {
+    width: min(600px, calc(100vw - 24px)) !important;
+  }
+}
+
+/* This removes the small progress bar at the bottom if you want it extra clean */
+.birthday-toast-custom .Toastify__progress-bar {
+  display: none;
+}

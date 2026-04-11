@@ -1,0 +1,136 @@
+/* Full page background */
+.auth-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: url("./Images/SHAimage2.jpg") no-repeat center center/cover;
+  font-family: "Poppins", sans-serif;
+  position: fixed; /* Fixes background to the screen */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  
+
+  background-size: cover; /* This fills the screen without stretching */
+}
+
+/* Left section - motivational text */
+.auth-left {
+  flex: 1;
+  color: palegoldenrod;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 100px;
+}
+
+.auth-left h1 {
+  font-size: 3.5rem;
+  font-weight: 1000;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.auth-left h2 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: white;
+}
+
+/* Right section - transparent signup/login card */
+.auth-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  margin: 60px;
+  padding: 3px 6px;
+  color: #333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  display: inline-block; /* make border match text width */
+  border-bottom: 2px solid #060e1a;
+  padding-bottom: 2px; /* add small gap between text and line */
+  margin-bottom: 10px;
+  color: #060e1a;
+  font-weight: 600;
+  text-align: left;
+}
+
+.form-container {
+  text-align: left; /* ensures title stays left */
+  width: 100%;
+  max-width: 300px;
+  align-content: center;
+}
+
+
+.auth-input {
+  width: 100%;
+  max-width: 280px;
+  margin: 10px 0;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: palegoldenrod;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-button {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #060e1a ;
+  color: palegoldenrod;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #3d1302;
+  color: palegoldenrod;
+}
+
+.toggle-text {
+  margin-top: 15px;
+  color: palegoldenrod;
+  font-size: 0.9rem;
+}
+
+.toggle-link {
+  color: palegoldenrod;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .auth-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-card {
+    width: 90%;
+    margin: 0;
+  }
+}

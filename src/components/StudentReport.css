@@ -1,0 +1,272 @@
+/* WRAPPER TO HOLD THE FIXED BG */
+.report-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* THE FIXED BACKGROUND (Change image path here) */
+.report-background-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Adds a 50% dark tint overlay without blurring the image */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("./Images/background.jpeg") center center no-repeat;
+  background-size: cover;
+  
+  /* Reduces image glare while keeping it crisp */
+  filter: brightness(1.5) contrast(1.1);
+  
+  z-index: -1;
+}
+
+.report-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  margin-left: -20px;
+  margin-top: -30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.report-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.export-btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  color: #f1e2a6; 
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.export-btn:hover {
+  background-color: #060e1a;
+  transform: translateY(-2px);
+  color: #ffeb3b;
+}
+
+/* THE REPORT PAPER */
+.report-paper {
+  width: 210mm; 
+  min-height: 297mm;
+  height: auto;
+  padding: 50px;
+  background: white;
+  color: #333;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 50px;
+}
+
+/* All your other styles (Header, Tables, Badges, Skill Tree) remain the same */
+.report-header { border-bottom: 4px solid #060e1a; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end; }
+.report-header h1 { margin: 0; color: #060e1a; font-size: 28px; text-transform: uppercase; }
+.report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+.stat-card { background: #f8f9fa; padding: 25px; border-left: 6px solid #060e1a; border-radius: 4px; text-align: center; }
+.grade-big { font-size: 32px; font-weight: 800; margin: 10px 0; color: #060e1a; }
+.report-section { margin-bottom: 45px; }
+.report-section h3 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #060e1a; font-size: 18px; margin-bottom: 20px; text-transform: uppercase; }
+.report-table { width: 100%; border-collapse: collapse; }
+.report-table th { background-color: #060e1a; color: white; text-align: left; padding: 12px; font-size: 13px; }
+.report-table td { padding: 12px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; }
+.badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+.badge.pending { background: #fee2e2; color: #991b1b; }
+.badge.in-progress { background: #e0f2fe; color: #075985; }
+.badge.completed { background: #dcfce7; color: #166534; }
+.skill-tree-viz { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; padding: 30px 10px; background: rgba(0, 0, 0, 0.03); border-radius: 15px; margin-bottom: 20px; }
+.skill-node-container { display: flex; flex-direction: column; align-items: center; position: relative; }
+.skill-hex { width: 70px; height: 70px; background: #e0e0e0; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.4s ease; }
+.skill-hex.active { background: #3498db; color: white; }
+.skill-hex.mastered { background: #f1c40f; color: #000; transform: scale(1.1); font-weight: bold; }
+.hex-label { margin-top: 8px; font-size: 11px; font-weight: bold; color: #444; text-transform: uppercase; }
+.tree-legend { display: flex; justify-content: center; gap: 20px; margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 3px; }
+.dot.locked { background: #d1d1d1; }
+.dot.active { background: #3498db; }
+.dot.mastered { background: #f1c40f; }
+.report-footer { margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; text-align: center; font-size: 11px; color: #bbb; text-transform: uppercase; }
+
+@media (max-width: 900px) {
+    .report-paper { width: 95%; padding: 20px; }
+    .report-container { padding-left: 20px; }
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .report-background-fixed {
+    inset: 0;
+    width: auto;
+    height: auto;
+  }
+
+  .report-container {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 12px 10px;
+  }
+
+  .report-paper {
+    width: 100%;
+    padding: 16px 12px;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ... Keep all your existing .report-page-wrapper, .report-background-fixed, etc. ... */
+
+/* SKILL TREE CONNECTOR LINES */
+.skill-tree-viz {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap; /* Keep them in a line to see the tree */
+  gap: 50px; /* Space for lines */
+  padding: 30px 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 15px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.skill-node-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Horizontal line between hexes */
+.tree-connector-line {
+  position: absolute;
+  top: 35px; /* Half of hex height (70px) */
+  left: 70px; /* Starts after hex */
+  width: 50px; /* Same as gap */
+  height: 2px;
+  background: #ccc;
+  z-index: 1;
+}
+
+/* PERFORMANCE BREAKDOWN FIX */
+.exam-summary-box {
+  display: flex;
+  justify-content: space-between; /* Pushes grade to right */
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  /* border-left is handled by inline style in JS */
+}
+
+.exam-main-info h4 {
+  font-size: 18px;
+  color: #060e1a;
+}
+
+.exam-grade-display {
+  font-size: 14px; /* Per request */
+  font-weight: bold; /* Per request */
+  margin-right: 15px; /* Add space from the right edge */
+  text-align: right;
+}
+
+/* ... Keep all your other badge, table, and header styles ... */
+/* ... Keep existing paper and header styles ... */
+
+/* TREE LEGEND STYLES */
+.tree-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.dot.locked { background: #e0e0e0; }
+.dot.active { background: #3498db; }
+.dot.mastered { background: #f1c40f; }
+
+/* TREE CONNECTOR LINE */
+.skill-node-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree-connector-line {
+  position: absolute;
+  top: 35px; /* Centers with hex */
+  left: 70px; /* Starts after hex */
+  width: 50px; /* Bridge gap */
+  height: 2px;
+  background: #ccc;
+  z-index: 1;
+}
+
+/* PERFORMANCE BOX (Right aligned grade) */
+.exam-summary-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.exam-grade-display {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 15px;
+  text-align: right;
+}
+
+/* HEX COLORS */
+.skill-hex.locked { background: #e0e0e0; color: #999; }
+.skill-hex.active { background: #3498db; color: white; }
+.skill-hex.mastered { background: #f1c40f; color: #000; font-weight: bold; }

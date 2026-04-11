@@ -1,0 +1,54 @@
+/* LogoPage.css */
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url("./Images/SHAimage2.jpg") no-repeat center center;
+  background-size: cover;
+  
+  /* PERFECT CENTERING */
+  display: flex;
+  justify-content: center; /* Horizontally centered */
+  align-items: center;     /* Vertically centered */
+  box-sizing: border-box;
+}
+
+.typing-text {
+  color: white;
+  font-size: 2.8rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  
+  /* CURSOR STYLING */
+  border-right: 3px solid white; 
+  width: 0;
+  
+  /* ANIMATION SETTINGS */
+  animation: 
+    typing 2.6s steps(25) forwards,  /* Increased from 2.5s to 4.5s for slower typing */
+    blink 0.7s infinite 3s;        /* Blink starts exactly when typing ends */
+}
+
+/* Typing animation - 34ch covers the full length of your sentence */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 25ch; } 
+}
+
+/* Cursor blink */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+/* Responsive fixes */
+@media screen and (max-width: 768px) {
+  .typing-text {
+    font-size: 2rem;
+    animation: typing 2.5s steps(34) forwards, blink 0.7s infinite;
+  }
+}

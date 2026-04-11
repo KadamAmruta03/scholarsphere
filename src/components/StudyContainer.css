@@ -1,0 +1,250 @@
+
+/* BACKGROUND WRAPPER */
+.sc-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* THE FIXED IMAGE */
+.sc-background-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Adds a 60% dark tint overlay so that white text/cards are clearly visible */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url("./Images/bookkss.jpg") center center no-repeat;
+  background-size: cover;
+  
+  /* Reduces image glare and keeps the image sharp without any blur */
+  filter: brightness(1.5) contrast(1.1);
+  
+  z-index: -1;
+}
+
+
+.study-left {
+  max-width: 1500px;
+  height: auto;          /* full screen */
+  overflow-y: auto;       /* only calendar scrolls */
+  overflow-x: hidden;     /* no horizontal scroll */
+  position: relative;
+  margin-left: -45px;
+  margin-top: -25px;
+  margin-right: -20px;
+}
+
+
+/* ==============================
+   ADD INPUT BAR (SUBJECT + UNIT)
+============================== */
+.add-subject {
+  display: flex;
+  gap: 15px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  
+}
+
+.add-subject input {
+  flex: 1;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.75);
+
+  
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.add-subject button {
+  background: palegoldenrod;
+  color: #050f1d;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ==============================
+   SUBJECT GRID
+============================== */
+.subject-progress-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* ==============================
+   SUBJECT CARD
+============================== */
+.subject-item {
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-radius: 8px;
+  padding: 20px;
+  color: palegoldenrod;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.subject-item:hover {
+  transform: translateY(-3px);
+}
+
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subject-header strong {
+  text-transform: uppercase;
+}
+
+.delete-subject {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+}
+
+/* ==============================
+   SUBJECT PROGRESS BAR
+============================== */
+
+/* ==============================
+   UNIT TABLE FIXES
+============================== */
+.unit-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-top: -15px;
+  margin-bottom: 50px;
+  table-layout: fixed; /* Keep this to force exact widths */
+}
+
+
+.unit-list thead th {
+  background: linear-gradient(180deg, #0a1220, #04080f);
+  color: white;
+  padding: 14px 18px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+/* Align headers specifically */
+.unit-list thead th:first-child { text-align: left; width: 40%; }
+.unit-list thead th:nth-child(2) { text-align: center; width: 20%; }
+.unit-list thead th:nth-child(3) { text-align: center; width: 20%; }
+.unit-list thead th:nth-child(4) { text-align: center; width: 20%; }
+
+.unit-list tbody td {
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  color: #222;
+  vertical-align: middle;
+  word-wrap: break-word; /* This handles long text without breaking layout */
+}
+
+/* Fix for the first column (Removed -webkit-box which caused mismatch) */
+.unit-list tbody td:first-child {
+  text-align: left;
+  white-space: normal;
+  overflow: hidden;
+}
+
+/* Icon Alignment */
+.unit-list tbody td:nth-child(2), 
+.unit-list tbody td:nth-child(3),
+.unit-list tbody td:nth-child(4) { 
+  text-align: center; 
+  font-size: 1.2rem; /* Make icons slightly bigger */
+}
+
+.unit-list tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.unit-list tbody tr:hover td {
+  background: #f6f8fb;
+}
+
+/* DELETE BUTTON */
+.unit-list td button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #000;
+  transition: color 0.2s;
+}
+
+.unit-list td button:hover {
+  color: #c40000;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .sc-background-fixed {
+    inset: 0;
+  }
+
+  .study-left {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding: 12px 10px;
+    max-width: 100%;
+  }
+
+  .add-subject {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .subject-progress-list {
+    grid-template-columns: 1fr;
+  }
+
+  .unit-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .unit-list table {
+    min-width: 560px;
+  }
+}
+
+/* DELETE BUTTON */
+.unit-list td:last-child button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #000;
+}
+
+.unit-list td:last-child button:hover {
+  color: #c40000;
+}
+
+.unit-list td:last-child button:focus {
+  outline: none;
+}

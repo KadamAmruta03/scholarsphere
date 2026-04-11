@@ -1,0 +1,19 @@
+/* PageBackground.css */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Keep it behind everything */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-foreground {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll from negative margins */
+  width: 100%;
+}

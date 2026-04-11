@@ -1,0 +1,180 @@
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: garamond;
+  font-weight: bold;
+}
+
+.countdown-card {
+  /* YOUR DIMENSIONS */
+  width: 560px;
+  height: 320px;
+
+
+  margin-left: -5px;
+
+  /* STYLING */
+  color: #050f1d;
+  background: rgba(28, 32, 25, 0.5); /* semi-transparent */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 20px;
+  font-family: garamond;
+  font-weight: bold;
+  
+  /* LAYOUT FIX */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center;     /* Centers content horizontally */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .countdown-container {
+    justify-content: stretch;
+    width: 100%;
+  }
+
+  .countdown-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
+  .popup-box {
+    width: min(420px, calc(100vw - 24px));
+  }
+}
+
+
+
+.countdown-card h3 {
+  color: palegoldenrod; /* Changed to match your gold/theme for better visibility on dark */
+  font-size: 32px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.countdown-card h1 {
+  font-size: 100px; /* Bigger font to fill the 300px height */
+  color: #050f1d;    /* White text for better contrast on glass background */
+  margin: 10px 0;
+  line-height: 1;
+}
+
+.countdown-card p {
+  font-size: 18px;
+  color: #ccc;
+  margin: 0;
+  font-weight: 500;
+}
+
+
+
+
+/* Header Text - Gold like the Countdown title */
+.popup-box h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: palegoldenrod; 
+  text-transform: uppercase;
+}
+
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+.popup-box {
+  width: 420px;
+  max-height: calc(100vh - 120px);
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 14px;
+  color: palegoldenrod;
+  animation: popupFade 0.18s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+}
+
+
+
+
+/* Existing styles remain the same... */
+
+.event-name-display {
+  margin-top: 15px;
+  font-size: 22px;
+  color: palegoldenrod; /* Gold color to match header */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid #050f1d;
+  padding-top: 10px;
+  width: 80%;
+  text-align: center;
+}
+
+.days-left-text {
+  font-size: 15px;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Popup Input Styling */
+.popup-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: palegoldenrod;
+}
+
+.save-btn-countdown, 
+.cancel-btn-countdown {
+  background-color: palegoldenrod;
+  color: #050f1d;
+  padding: 10px 25px;      /* Added padding */
+  border: none; /* Added a subtle border */
+  border-radius: 8px;     /* Match your popup rounded corners */
+  cursor: pointer;
+  font-family: garamond;
+  font-weight: bold;
+  transition: 0.3s;
+  flex: 1;                /* Makes buttons equal width */
+}
+
+.save-btn-countdown:hover, 
+.cancel-btn-countdown:hover {
+  background-color: #050f1d;
+  color: palegoldenrod;
+}

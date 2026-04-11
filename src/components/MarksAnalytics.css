@@ -1,0 +1,170 @@
+/* BACKGROUND WRAPPER */
+.ma-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* THE FIXED IMAGE */
+.ma-background-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Adds a 55% dark tint overlay to improve text readability */
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+              url("./Images/studyyy.jpg") center center no-repeat;
+  background-size: cover;
+  
+  /* Reduces image glare while maintaining sharpness (zero blur) */
+  filter: brightness(1.5) contrast(1.1);
+  
+  z-index: -1;
+}
+
+
+/* SUBJECT TABLE (MODIFIED FOR DARK BACKGROUND) */
+.unit-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.75); /* Changed from white to transparent dark */
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  margin-bottom: 40px;
+  table-layout: fixed;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.unit-list tbody td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border for dark mode */
+}
+
+.unit-list input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: black;
+}
+
+/* Rest of your existing CSS below */
+.unit-list thead th {
+  background: linear-gradient(180deg, #0a1220, #04080f);
+  color: white;
+  padding: 14px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.unit-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 40px;
+  table-layout: fixed;
+}
+
+
+
+.unit-list thead th:first-child { width: 40%; text-align: left; }
+.unit-list thead th:nth-child(2),
+.unit-list thead th:nth-child(3),
+.unit-list thead th:nth-child(4) {
+  width: 20%;
+  text-align: center;
+}
+
+.unit-list tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.unit-list tbody tr:hover td {
+  background: #f6f8fb;
+}
+
+.unit-list input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.unit-list td button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.unit-list td button:hover {
+  color: #c40000;
+}
+
+
+/* === EXAM TABS === */
+.exam-tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.exam-tab-group {
+  display: flex;
+  gap: 4px;
+}
+
+.exam-tab,
+.analytics-button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #04080f;
+  color: palegoldenrod;
+}
+
+.exam-tab.active {
+  background: palegoldenrod;
+  color: #04080f;
+}
+
+
+/* === CHART CONTAINER === */
+.chart-box {
+  background: rgba(0,0,0,0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  height: 350px;
+  width: 96%;
+  margin-bottom: 50px;
+}
+
+.subject-cell {
+  display: flex;
+  align-items: center;
+}
+
+.subject-cell input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.delete-subject-inline {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-subject-inline:hover {
+  color: darkred;
+}

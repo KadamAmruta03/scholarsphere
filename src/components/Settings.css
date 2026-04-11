@@ -1,0 +1,242 @@
+.settings-page-container {
+  /* Positioning & Size */
+  position: fixed;
+  height: 90vh;
+  width: 100vw;
+  margin-top: -90px;
+  margin-left: -80px;
+
+  
+  /* Background Image Logic */
+  background: url("./Images/set.png") center center no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-color: palegoldenrod; /* Fallback color */
+
+  /* Typography */
+  font-family: garamond;
+
+
+  /* Layout for the card inside */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  overflow-y: auto; /* Allows scrolling since container is fixed */
+}
+
+/* Ensure the card stays centered even with the container's negative margins */
+.settings-card {
+  margin-top: 50px; /* Offset the container's -90px to bring card into view */
+  margin-left: -60px;  /* Offset the container's -80px */
+  margin-bottom: 30px;
+  
+  /* Your existing glass styles */
+  background: rgba(28, 32, 25, 0.5); 
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .settings-page-container {
+    position: relative;
+    isolation: isolate;
+    z-index: 0;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    overflow-x: hidden;
+    background: none;
+    background-attachment: scroll;
+    padding: 12px 10px;
+  }
+
+  .settings-page-container::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("./Images/set.png") center center no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .settings-card {
+    margin-top: 12px;
+    margin-left: 0;
+    padding: 16px 14px;
+    max-width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+  
+  /* Optional: To make the form inputs look better inside a white glass container */
+  .settings-card input, 
+  .settings-card select {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .settings-card input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  
+  .settings-header h2 {
+    margin: 0;
+    color: palegoldenrod;
+  }
+  
+  .settings-header p {
+    color: #050f1d;
+    font-size: 0.9rem;
+  }
+  
+
+  
+  .settings-section {
+    margin-top: 30px;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-left: 4px solid #050f1d;
+    padding-left: 10px;
+  }
+  
+  .email-badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px dashed #444;
+  }
+  
+  .email-badge .label { color: #888; }
+  .email-badge .value { color: #050f1d; font-weight: bold; }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+    
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+    color: #050f1d;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    background: #0f0f1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: palegoldenrod;
+    transition: 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #050f1d;
+    outline: none;
+    background: #161625;
+  }
+  
+  .save-btn {
+    background: palegoldenrod;
+    color: #050f1d;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .save-btn:hover { background: #050f1d; color: palegoldenrod; }
+  
+
+  /* Update this block to include select and ensure background is consistent */
+.settings-card input, 
+.settings-card select,
+.form-group input,
+.form-group select {
+  padding: 12px;
+  background: #0f0f1a !important; /* Forces the dark background */
+  border: 1px solid #333 !important;
+  border-radius: 6px;
+  color: palegoldenrod !important; /* Forces the gold text */
+  transition: 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure the dropdown options are readable */
+.settings-card select option {
+  background: #0f0f1a;
+  color: palegoldenrod;
+}
+
+/* Focus state for both */
+.settings-card input:focus, 
+.settings-card select:focus,
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #050f1d;
+  outline: none;
+  background: #161625 !important;
+}
+.settings-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #333;
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #cc0000;
+}

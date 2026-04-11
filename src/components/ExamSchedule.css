@@ -1,0 +1,407 @@
+.exm-wrapper {
+  max-width: 1500px;
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0 auto;
+
+}
+/* BACKGROUND WRAPPER */
+.exm-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.exm-background-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* 1. This adds a dark tint layer over the image */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("./Images/marks.jpg") center center no-repeat;
+  background-size: cover;
+  
+  /* 2. This reduces the overall 'glare' of the bright image */
+  filter: brightness(1.5) contrast(1.1); 
+  
+  z-index: -1;
+}
+
+
+
+/* count box on right */
+.exm-count {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  color: white;
+}
+
+.exm-count-input {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: none;
+  min-width: 90px;
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  color: white;
+ 
+}
+
+
+
+.exm-controls {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr 1fr 2fr 1fr;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  margin-top: 12px;
+
+}
+
+
+.exm-input {
+  padding: 12px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  color: white;
+  outline: none;
+  font-size: 14px;
+  
+}
+
+.exm-input::placeholder {
+  color: white;
+}
+
+.exm-input:focus {
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.08);
+}
+
+/* add button */
+.exm-add-btn {
+  background: palegoldenrod;
+  color: #050f1d;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+
+
+/* === TABLE WRAPPER === */
+.exm-table-wrap {
+  margin-top: 18px;
+  width: 100%;
+}
+
+/* empty state */
+.exm-empty {
+  padding: 18px;
+  border-radius: 10px;
+
+  color: white;
+  text-align: center;
+}
+
+/* === TABLE === */
+.exm-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+  
+}
+
+.exm-table thead th {
+  text-align: left;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.04);
+  color: #ffeb3b;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.exm-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: middle;
+  color: white;
+}
+
+.exm-table tbody tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* subject column — keep min width similar to bookmark */
+.td-subject {
+  min-width: 220px;
+  font-weight: 700;
+  color: white;
+}
+
+.td-location {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* countdown badge inside table */
+.exm-count-badge {
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  
+}
+
+/* actions column */
+/* actions column */
+.td-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;   /* vertically center */
+  justify-content: center; /* horizontally center */
+}
+
+/* icons style */
+.exm-icon {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  
+  color: white;
+  display: flex;
+  margin-right: -10px;
+  margin-left: -20px;
+  align-items: center;  /* vertically center inside icon */
+  justify-content: center; /* horizontally center inside icon */
+}
+
+
+
+
+/* responsive: stack inputs and make table scrollable on small screens */
+@media (max-width: 1000px) {
+  .exm-controls {
+    grid-template-columns: 1fr 150px 120px 120px 1fr 120px;
+  }
+}
+
+@media (max-width: 680px) {
+  .exm-wrapper {
+    padding: 12px;
+  }
+
+  .exm-page-wrapper .et-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .exm-page-wrapper .exm-count {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .exm-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .exm-add-btn {
+    width: 100%;
+  }
+
+  .exm-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .exm-count-input {
+    min-width: 0;
+    width: 90px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .exm-background-fixed {
+    inset: 0;
+    width: auto;
+    height: auto;
+  }
+
+  .exm-page-wrapper .et-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .exm-page-wrapper .exm-count {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .exm-count-input {
+    width: 90px;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .exm-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 10px;
+    margin: 0;
+  }
+
+  .exm-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .exm-add-btn {
+    width: 100%;
+  }
+
+  .exm-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Modal background */
+.exm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+/* Modal box */
+.exm-modal-box {
+  background: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(20px);
+  padding: 25px 30px;
+  border-radius: 14px;
+  width: 340px;
+  text-align: center;
+  color: white;
+}
+
+.exm-modal-box h2 {
+  margin: 0 0 10px;
+  color: #ffeb3b;
+  font-size: 22px;
+}
+
+.exm-modal-box p {
+  margin: 0 0 20px;
+  color: white;
+}
+
+/* Buttons */
+.exm-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.exm-btn-cancel,
+.exm-btn-delete {
+  padding: 10px 18px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.exm-btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ddd;
+}
+
+.exm-btn-delete {
+  background: rgba(244, 67, 54, 0.8);
+  color: white;
+}
+
+.exm-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.exm-btn-delete:hover {
+  background: rgba(244, 67, 54, 1);
+}
+
+/* ===============================
+   MATCH MARKS ANALYTICS INPUT SIZE
+   =============================== */
+
+/* Match Add Exam / Add Subject input exactly */
+.exm-controls .exm-input {
+  flex: 1;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* Placeholder color like analytics */
+.exm-controls .exm-input::placeholder {
+  color: #666;
+}
+
+/* Focus behavior similar to analytics */
+.exm-controls .exm-input:focus {
+  outline: none;
+  border-color: #666;
+  box-shadow: none;
+}

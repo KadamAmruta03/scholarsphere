@@ -1,0 +1,92 @@
+.weekly-strength-map {
+  background-color: #fff8f0;
+  background: rgba(28, 32, 25, 0.5);  /* semi-transparent background */
+  backdrop-filter: blur(10px);        /* blur effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 20px;
+  width: 650px;
+
+  height: auto;
+  min-height: 480px;
+
+  margin-left: -5px;
+  font-family: garamond;
+  font-weight: bold;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .weekly-strength-map {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px;
+  }
+}
+
+.weekly-strength-map h2{
+  font-size: 1.6rem;
+  margin-top: -2px;
+  margin-bottom: 10px; /* Increased from 5px to 25px for more space */
+  border-bottom: 1px solid #050f1d;
+  padding-bottom: 10px;
+  color: palegoldenrod;
+
+}
+.weekly-strength-map h3 {
+  font-size: 1.6rem;
+  margin-top: 10px;
+  margin-bottom: 15px; /* Increased from 5px to 25px for more space */
+  border-bottom: 1px solid #050f1d;
+  padding-bottom: 10px;
+  color: palegoldenrod;
+}
+
+.metric {
+  margin: 5px 0;
+}
+
+.metric span {
+  display: block;
+  margin-bottom: 2px;
+  color: #fff;
+}
+
+.progress-bar {
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 20px;
+  width: 100%;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(60deg, #06402b, #06bb23);
+  text-align: right;
+  font-weight: bold;
+  padding-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 10px 0 0 10px;
+  transition: width 0.5s ease;
+  color: #fff;
+}
+
+.weekly-strength-map ul {
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+}
+
+.weekly-strength-map ul li {
+  background-color: #2a2a3d;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  color: #fff;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
