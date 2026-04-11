@@ -78,7 +78,15 @@ const corsOptions = {
     // Allow non-browser requests (curl/postman) that don't send Origin.
     if (!origin) return cb(null, true);
     if (allowedOrigins.includes("*")) return cb(null, true);
-    if (allowedOrigins.includes(origin)) return cb(null, true);
+
+    // Case-insensitive check and ignore trailing slashes
+    const normalizedOrigin = origin.toLowerCase().replace(/\/$/, "");
+    const isAllowed = allowedOrigins.some((allowed) => {
+      const normalizedAllowed = allowed.toLowerCase().replace(/\/$/, "");
+      return normalizedAllowed === normalizedOrigin;
+    });
+
+    if (isAllowed) return cb(null, true);
     return cb(new Error(`CORS blocked origin: ${origin}`), false);
   },
 };
@@ -88,6 +96,18 @@ console.log("CORS allowed origins:", allowedOrigins.join(", "));
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "1mb" }));
+
+// Handle trailing slashes: if a request comes in for /api/signup/ it redirects (307) to /api/signup
+// This prevents 405 errors caused by automatic redirect-to-get behavior.
+app.use((req, res, next) => {
+  if (req.path !== "/" && req.path.endsWith("/")) {
+    const query = req.url.slice(req.path.length);
+    const safepath = req.path.slice(0, -1);
+    // Use 307 to preserve the POST method during the redirect
+    return res.redirect(307, safepath + query);
+  }
+  next();
+});
 
 // Minimal request logging for debugging LAN/CORS issues.
 app.use((req, _res, next) => {
