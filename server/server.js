@@ -144,6 +144,8 @@ async function initializeDatabase() {
   
   // eslint-disable-next-line no-console
   console.log(`[Auto-Init] Checking database schema on ${host}/${database}...`);
+  // eslint-disable-next-line no-console
+  console.log(`[Auto-Init] Available Env Keys: ${Object.keys(process.env).join(", ")}`);
 
   try {
     const connection = await pool.promise().getConnection();
