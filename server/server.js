@@ -101,11 +101,11 @@ app.use((req, _res, next) => {
 app.options(/.*/, cors(corsOptions));
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  port: Number(process.env.DB_PORT || 3306),
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "UNCHARTED@#32",
-  database: process.env.DB_NAME || "study_habit_db",
+  host: process.env.DB_HOST || process.env.MYSQLHOST || "localhost",
+  port: Number(process.env.DB_PORT || process.env.MYSQLPORT || 3306),
+  user: process.env.DB_USER || process.env.MYSQLUSER || "root",
+  password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || "UNCHARTED@#32",
+  database: process.env.DB_NAME || process.env.MYSQLDATABASE || "study_habit_db",
   waitForConnections: true,
   connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
   queueLimit: 0,
@@ -139,13 +139,16 @@ CREATE TABLE IF NOT EXISTS yearly_activity (id INT AUTO_INCREMENT PRIMARY KEY, u
 `;
 
 async function initializeDatabase() {
+  const host = process.env.DB_HOST || process.env.MYSQLHOST || "localhost";
+  const database = process.env.DB_NAME || process.env.MYSQLDATABASE || "study_habit_db";
+  
+  // eslint-disable-next-line no-console
+  console.log(`[Auto-Init] Checking database schema on ${host}/${database}...`);
+
   try {
-    // Enable multiple statements for the initialization
     const connection = await pool.promise().getConnection();
-    await connection.query("SET SESSION sql_mode = '';"); // Optional safety
     
-    // We run queries one by one or via multipleStatements (configured in pool)
-    // To be safe and avoid pool reconfiguration, we'll split and run.
+    // We run queries one by one
     const queries = SCHEMA_SQL.split(';').map(q => q.trim()).filter(Boolean);
     for (const q of queries) {
       await connection.query(q);
@@ -153,10 +156,10 @@ async function initializeDatabase() {
     
     connection.release();
     // eslint-disable-next-line no-console
-    console.log("Database schema verified/initialized successfully.");
+    console.log("[Auto-Init] Database schema verified/initialized successfully.");
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error("Database initialization failed:", err.message);
+    console.error("[Auto-Init] Database initialization failed:", err.message);
   }
 }
 
