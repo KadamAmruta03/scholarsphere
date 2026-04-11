@@ -13,7 +13,21 @@ function getDefaultBaseUrl() {
   return "http://localhost:5000";
 }
 
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || getDefaultBaseUrl();
+function getFullApiUrl() {
+  const rawUrl = process.env.REACT_APP_API_BASE_URL || getDefaultBaseUrl();
+  if (!rawUrl) return "";
+  
+  // If it's a domain name without a protocol (e.g. "my-api.railway.app"), add https://
+  let url = rawUrl.trim();
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = `https://${url}`;
+  }
+  
+  // Remove any trailing slashes to avoid double-slash issues (e.g. /api/login becomes //api/login)
+  return url.replace(/\/+$/, "");
+}
+
+export const API_BASE_URL = getFullApiUrl();
 
 const api = axios.create({
   baseURL: API_BASE_URL,
