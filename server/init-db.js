@@ -171,16 +171,24 @@ CREATE TABLE IF NOT EXISTS yearly_activity (
 `;
 
 async function init() {
+  // Use environment variables (injected by Railway)
   const connectionConfig = {
-    host: process.env.DB_HOST || "localhost",
+    host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT || 3306),
-    user: process.env.DB_USER || "root",
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME || "study_habit_db",
-    multipleStatements: true, // Crucial for running multiple queries
+    database: process.env.DB_NAME,
+    multipleStatements: true,
   };
 
+  // Log connection attempt
   console.log(`Connecting to database ${connectionConfig.database} on ${connectionConfig.host}...`);
+
+  if (!connectionConfig.host || !connectionConfig.password) {
+    console.error("CRITICAL ERROR: Missing Database Variables!");
+    console.error("Ensure DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME are set in Railway Variables.");
+    process.exit(1);
+  }
 
   try {
     const connection = await mysql.createConnection(connectionConfig);
