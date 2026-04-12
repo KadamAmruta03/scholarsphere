@@ -96,7 +96,7 @@ study-habit-analyzer/
 
 ### Prerequisites
 - Node.js 18+
-- MySQL 8.0 (local instance or Railway MySQL service)
+- MySQL 9.4 (local instance or Railway MySQL service)
 
 ### Steps
 
