@@ -57,7 +57,7 @@ Built as a full-stack project using React, Node/Express, and MySQL to demonstrat
 |---|---|
 | Frontend | React 18 (Create React App), React Router DOM, Axios |
 | Backend | Node.js, Express.js |
-| Database | MySQL 8.0 — Railway MySQL Service |
+| Database | MySQL 9.4 — Railway MySQL Service |
 | Authentication | JSON Web Tokens (JWT) |
 | Deployment | Railway (Backend + MySQL hosted together) |
 
