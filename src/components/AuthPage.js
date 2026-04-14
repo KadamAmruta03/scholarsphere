@@ -57,14 +57,14 @@ function AuthPage() {
           <input
             className="auth-input"
             type="email"
-            placeholder="Email"
+            placeholder="ex@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className="auth-input"
             type="password"
-            placeholder="Password"
+            placeholder="ex"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
