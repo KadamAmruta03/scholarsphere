@@ -76,6 +76,10 @@ function AuthPage() {
           {message && <p style={{ marginTop: "10px", color: "#fff" }}>{message}</p>}
           <p style={{ marginTop: "10px", color: "#fff" }}>
   Don't have an account? <Link to="/signup">Signup</Link>
+  <br />
+  <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>
+    You can use the written email and password to view the project.
+  </span>
 </p>
 
         </div>
